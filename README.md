@@ -62,7 +62,7 @@ This is not a typical portfolio — it's an **interactive experience** showcasin
 
 ## 💼 Experience Highlights
 
-- 6+ years Backend Engineering
+- 5+ years Backend Engineering
 - Built AI-powered systems (RAG, GPT)
 - Designed scalable microservices architectures
 - Worked with global clients:

@@ -138,6 +138,10 @@ function CharacterAvatar() {
       targetRotY = groupRef.current.position.x > targetBaseX ? -Math.PI / 2 : Math.PI / 2;
     }
     
+    // Add head tracking towards mouse for more interactivity
+    const headTrackAmount = isMobile ? 0 : state.pointer.x * 0.15;
+    targetRotY += headTrackAmount;
+    
     // Move up or down slightly based on scroll
     const targetZ = scrollProgress * 3; 
     

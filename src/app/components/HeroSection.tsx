@@ -101,12 +101,12 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
           transition={{ delay: 0.55 }}
           className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed"
         >
-          6+ years building{" "}
+          5+ years building{" "}
           <span className="text-white font-medium">production level backend solutions</span>,{" "}
           <span className="text-white font-medium">serverless architectures</span>,{" "}
           <span className="text-white font-medium">microservices architectures</span>, and{" "}
           <span className="text-white font-medium">LLM-powered backends</span> — most recently for{" "}
-          <span className="text-[#00D4FF] font-semibold">Arm Holdings</span>.
+          <span className="text-[#00D4FF] font-semibold">Health and Safety Group UK</span>.
         </motion.p>
 
         {/* Tech badges */}

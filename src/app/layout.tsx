@@ -11,7 +11,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Vishal Yadav — Backend Engineer | GenAI & Serverless",
   description:
-    "Backend Engineer with 5+ years building production RAG pipelines, serverless architectures on AWS, and LLM-powered systems. Recently at Arm Holdings.",
+    "Backend Engineer with 5+ years building production RAG pipelines, serverless architectures on AWS, and LLM-powered systems. Recently at Health and Safety Group UK.",
   keywords: [
     "Backend Engineer",
     "GenAI",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Node.js",
     "TypeScript",
     "Serverless",
-    "Arm Holdings",
+    "Health and Safety Group UK",
   ],
   authors: [{ name: "Vishal Yadav", url: "https://vishal-portfolio-neon.vercel.app" }],
   creator: "Vishal Yadav",

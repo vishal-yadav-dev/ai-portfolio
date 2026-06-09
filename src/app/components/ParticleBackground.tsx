@@ -43,8 +43,9 @@ export default function ParticleBackground() {
       x: ((i * 137.5) % 1) * window.innerWidth,
       y: ((i * 97.3)  % 1) * window.innerHeight,
       r: (i % 3) * 0.5 + 0.5,
-      vx: ((i % 7) - 3) * 0.08,
-      vy: ((i % 5) - 2) * 0.08,
+      angle: (i / 50) * Math.PI * 2,
+      radius: 50 + (i % 10) * 25,
+      angularVelocity: ((i % 7) - 3) * 0.01,
       a: (i % 5) * 0.06 + 0.05,
     }));
 
@@ -56,13 +57,29 @@ export default function ParticleBackground() {
     window.addEventListener("resize", resize, { passive: true });
 
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Avatar nucleus position (center-right of screen)
+      const nucleusX = canvas.width * 0.65;
+      const nucleusY = canvas.height * 0.5;
+
       particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
+        // Orbital motion around avatar nucleus
+        p.angle += p.angularVelocity;
+        p.x = nucleusX + Math.cos(p.angle) * p.radius;
+        p.y = nucleusY + Math.sin(p.angle) * p.radius;
+
+        // Subtle attraction to nucleus
+        const dx = nucleusX - p.x;
+        const dy = nucleusY - p.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance > p.radius * 1.2) {
+          p.radius *= 0.98;
+        }
+        if (distance < p.radius * 0.8) {
+          p.radius *= 1.02;
+        }
+
         if (p.y > canvas.height) p.y = 0;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -76,13 +93,13 @@ export default function ParticleBackground() {
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   // Mobile — pure CSS, fully static, zero hydration risk
   // Uses CSS_PARTICLES with fixed values — never calls Math.random()
   if (!showCanvas) {
-    return (
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <style>{`
           @keyframes fp {
