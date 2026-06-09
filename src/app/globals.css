@@ -123,3 +123,142 @@ main > button,
 main > div {
   pointer-events: auto;
 }
+
+/* ── INTERACTIVE ENHANCEMENTS ── */
+
+/* Smooth transitions for all interactive elements */
+button, a, input, textarea {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button hover scale effect */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Link hover glow */
+a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #00d4ff;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+/* Input focus effects */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #00d4ff;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+/* Scroll reveal animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Sections with reveal animation */
+section {
+  animation: slideInUp 0.8s ease-out forwards;
+}
+
+section:nth-child(1) {
+  animation-delay: 0s;
+}
+
+section:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+section:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+section:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+section:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+/* Card hover effects */
+.card, [class*="card"], [class*="project"], [class*="skill"] {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover, [class*="card"]:hover, [class*="project"]:hover, [class*="skill"]:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+}
+
+/* Text selection glow */
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: inherit;
+}
+
+/* Smooth page transitions */
+main {
+  transition: opacity 0.3s ease;
+}
+
+/* Parallax scroll effect for sections */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Interactive cursor feedback */
+@media (hover: hover) {
+  button, a, input, textarea, [role="button"] {
+    cursor: pointer;
+  }
+}

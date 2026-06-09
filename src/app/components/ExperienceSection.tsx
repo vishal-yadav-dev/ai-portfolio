@@ -17,17 +17,16 @@ interface Experience {
 
 const EXPERIENCES: Experience[] = [
   {
-    company: "Innovify · Client: Arm Holdings",
+    company: "Innovify · Client: Arm Semiconductors",
     role: "Software Engineer – Backend & GenAI",
-    period: "Feb 2025 – Present",
+    period: "Jan 2025 – Present",
     location: "Remote",
-    highlight: true,
-    color: "#00D4FF",
+    color: "#7B2FFF",
     bullets: [
       "Architected full RAG pipeline for Arm's enterprise knowledge retrieval: document chunking → Pinecone embeddings → LangChain orchestration → Azure OpenAI response generation",
       "Built and deployed production serverless microservices on AWS Lambda, API Gateway, S3, and RDS powering Arm's backend workflows",
       "Designed AI-powered prediction scoring microservice using GPT models for automated decision pipelines — live in production",
-      "Integrated Azure AI services and multiple LLM APIs (OpenAI + Gemini) beyond chatbot use cases",
+      "Integrated Azure AI services and multiple LLM APIs (OpenAI + Gemini) for enterprise AI solutions",
     ],
     tags: [
       "Node.js",
@@ -143,7 +142,7 @@ export default function ExperienceSection() {
       >
         <SectionLabel>Experience</SectionLabel>
         <h2 className="text-4xl md:text-5xl font-black text-white mb-16">
-          6+ years,{" "}
+          5+ years,{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D4FF] to-[#7B2FFF]">
             real production systems.
           </span>

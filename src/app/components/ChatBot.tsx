@@ -10,7 +10,7 @@ interface Message {
 
 const SUGGESTED = [
   "What's Vishal's experience with RAG?",
-  "Tell me about the Arm Holdings project",
+  "Tell me about the Health and Safety Group UK project",
   "What serverless work has he done?",
   "Is he open to remote work?",
   "What's his GenAI tech stack?",

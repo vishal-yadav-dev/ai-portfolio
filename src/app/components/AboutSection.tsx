@@ -32,25 +32,13 @@ export default function AboutSection() {
               systems that don't just demo well, they run at scale.
             </p>
             <p>
-              Most recently I was embedded at{" "}
-              <span className="text-[#00D4FF] font-semibold">Arm Holdings</span>, the
-              semiconductor company powering 99% of the world's smartphones. I designed
-              their enterprise RAG system from scratch — document chunking, Pinecone
-              vector embeddings, LangChain orchestration, Azure OpenAI response
-              generation, and all the AWS Lambda serverless infrastructure underneath.
+              Most recently, at <span className="text-[#00D4FF] font-semibold">Innovify</span>, I designed a production RAG chatbot for{" "}
+              <span className="text-white">Arm's holding</span> — architecting the full pipeline from document ingestion and Pinecone vector embeddings, through LangChain orchestration, to Azure OpenAI response generation, all running on AWS serverless infrastructure.
             </p>
             <p>
-              In my own time I built{" "}
-              <a
-                href="https://vishal-portfolio-neon.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#00D4FF] hover:underline"
-              >
-                this very portfolio
-              </a>{" "}
+              In my own time, I built <span className="text-[#00D4FF]">this very portfolio</span>{" "}
               — an AI-powered site with a RAG chatbot backed by Pinecone, LangChain,
-              OpenAI and Gemini. Because I don't just integrate GenAI — I{" "}
+              OpenAI and Gemini. I'm also building a service where users can upload their resume and instantly build their own AI chatbot-based portfolio. Because I don't just integrate GenAI — I{" "}
               <span className="text-white italic">build</span> it.
             </p>
           </div>
@@ -85,7 +73,7 @@ export default function AboutSection() {
             Clients &amp; companies
           </p>
           <div className="flex flex-wrap justify-center items-center gap-10">
-            {["Arm Holdings", "Lunajoy Health", "Under Armour", "PVH Corp", "GXP"].map((name) => (
+            {["Arm's holding", "Innovify", "Lunajoy Health", "Under Armour", "PVH Corp", "GXP"].map((name) => (
               <span
                 key={name}
                 className="text-gray-500 font-semibold text-lg hover:text-white transition-colors duration-200"

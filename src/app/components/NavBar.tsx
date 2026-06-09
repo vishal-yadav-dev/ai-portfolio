@@ -72,8 +72,8 @@ export default function NavBar({ activeSection }: { activeSection: string }) {
         {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-2">
           <motion.a
-            href="/data/Vishal_Yadav-Resume.pdf"
-            download="Vishal_Yadav-Resume.pdf"
+            href="/data/Vishal_Yadav_Resume.pdf"
+            download="Vishal_Yadav_Resume.pdf"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#00D4FF]/20 to-[#7B2FFF]/20 border border-[#00D4FF]/30 text-[#00D4FF] text-sm font-medium hover:from-[#00D4FF]/30 hover:to-[#7B2FFF]/30 hover:shadow-[0_0_20px_rgba(0,212,255,0.25)] transition-all duration-200"
@@ -123,8 +123,8 @@ export default function NavBar({ activeSection }: { activeSection: string }) {
               ))}
               <div className="pt-2 space-y-2">
                 <a
-                  href="/data/Vishal_Yadav-Resume.pdf"
-                  download="Vishal_Yadav-Resume.pdf"
+                  href="/data/Vishal_Yadav_Resume.pdf"
+                  download="Vishal_Yadav_Resume.pdf"
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-[#00D4FF]/20 to-[#7B2FFF]/20 border border-[#00D4FF]/30 text-[#00D4FF] text-sm font-medium"
                 >

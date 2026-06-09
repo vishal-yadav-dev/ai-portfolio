@@ -101,12 +101,12 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
           transition={{ delay: 0.55 }}
           className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed"
         >
-          6+ years building{" "}
+          5+ years building{" "}
           <span className="text-white font-medium">production level backend solutions</span>,{" "}
           <span className="text-white font-medium">serverless architectures</span>,{" "}
           <span className="text-white font-medium">microservices architectures</span>, and{" "}
           <span className="text-white font-medium">LLM-powered backends</span> — most recently for{" "}
-          <span className="text-[#00D4FF] font-semibold">Arm Holdings</span>.
+          <span className="text-[#00D4FF] font-semibold">Health and Safety Group UK</span>.
         </motion.p>
 
         {/* Tech badges */}
@@ -143,8 +143,8 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
             🤖 Ask AI About Me
           </button>
           <a
-            href="/data/Vishal_Yadav-Resume.pdf"
-            download="Vishal_Yadav-Resume.pdf"
+            href="/data/Vishal_Yadav_Resume.pdf"
+            download="Vishal_Yadav_Resume.pdf"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-[#00D4FF]/30 text-[#00D4FF] font-semibold text-base hover:bg-[#00D4FF]/10 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)] transition-all duration-300"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

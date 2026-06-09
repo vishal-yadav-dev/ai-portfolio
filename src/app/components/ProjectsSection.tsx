@@ -9,7 +9,7 @@ const PROJECTS = [
     subtitle: "Personal Project · 2024–Present",
     description:
       "Built from scratch in my spare time — a GenAI-powered portfolio with a live RAG chatbot that answers real-time questions about me. Pinecone for vector storage, LangChain for orchestration, OpenAI + Gemini for multi-model responses. Deployed on Vercel.",
-    link: "https://vishal-portfolio-neon.vercel.app/",
+    // link: "https://vishal-portfolio-neon.vercel.app/",
     tags: ["Pinecone", "LangChain", "OpenAI", "Gemini", "Next.js", "RAG", "Vercel"],
     color: "#00D4FF",
     badge: "Live · Personal",
@@ -17,22 +17,22 @@ const PROJECTS = [
   },
   {
     title: "Enterprise RAG System — Arm Holdings",
-    subtitle: "Innovify · Client: Arm Holdings · 2025",
+    subtitle: "Innovify · Arm's holding · 2025",
     description:
       "Designed and shipped a production RAG pipeline for Arm's enterprise knowledge base. Document chunking strategy, embedding generation, vector similarity search via Azure OpenAI, and Node.js APIs orchestrating the full retrieval → LLM response flow on AWS serverless infrastructure.",
-    link: "https://www.arm.com/",
+    // link: "https://www.arm.com/",
     tags: ["Azure OpenAI", "RAG", "AWS Lambda", "Node.js", "TypeScript", "S3", "RDS"],
     color: "#7B2FFF",
     badge: "Production · Enterprise",
-    metrics: ["Arm Holdings client", "AWS serverless infra", "Azure OpenAI integration"],
+    metrics: ["Arm's holding client", "AWS serverless infra", "Azure OpenAI integration"],
   },
 
   {
     title: "AI Prediction Scoring Microservice",
-    subtitle: "Innovify · Arm Holdings · 2025",
+    subtitle: "Innovify · Arm's holding · 2025",
     description:
       "GPT-powered scoring microservice integrated into Arm's automated decision workflows. Not a prototype — a live system making automated decisions in production via serverless AWS architecture.",
-    link: "https://notchup.com/",
+    // link: "https://notchup.com/",
     tags: ["GPT-4", "AWS Lambda", "API Gateway", "Node.js", "TypeScript", "Microservices"],
     color: "#A855F7",
     badge: "Production · AI",
@@ -43,7 +43,7 @@ const PROJECTS = [
     subtitle: "Kratin Software · 2024",
     description:
       "End-to-end backend for Lunajoy Health's doctor + patient appointment booking. AWS Lambda + RDS + PostgreSQL under HIPAA compliance. Stripe tokenization boosted payment completion by 20%, AWS optimization cut data retrieval by 25%.",
-    link: "https://hellolunajoy.com/",
+    // link: "https://hellolunajoy.com/",
     tags: ["AWS Lambda", "PostgreSQL", "Stripe", "HIPAA", "Node.js", "RDS"],
     color: "#0EA5E9",
     badge: "Production · Healthcare",
@@ -52,7 +52,7 @@ const PROJECTS = [
   {
     title: "SmileADay",
     subtitle: "Mckinsol Consulting · 2020–2023",
-    link: "https://smileaday.org",
+    // link: "https://smileaday.org",
     description:
       "A PHP-based web application that simplifies secure online payments by seamlessly integrating both PayPal and Stripe payment gateways.",
     tags: ["PHP", "Stripe", "PayPal", "Backend APIs"],
@@ -63,7 +63,7 @@ const PROJECTS = [
   {
     title: "TimesOfPeople HR Portal",
     subtitle: "In-House Enterprise Solution",
-    link: "https://hr.timesofpeople.com/login",
+    // link: "https://hr.timesofpeople.com/login",
     description:
       "Comprehensive in-house HR management portal. Engineered the backend to handle complex employee details,attendanceTracking, timesheet tracking, agile project and sprint management, dynamic appraisal workflows, and seamless invoice reimbursements.",
     tags: ["Node.js", "JavaScript", "PostgreSQL", "Enterprise HR"],
@@ -96,7 +96,7 @@ const PROJECTS = [
     subtitle: "Mckinsol Consulting · spotyourdeal.com · 2020–2023",
     description:
       "Backend for a full e-commerce platform. Built product catalogue management, inventory tracking, order lifecycle APIs, and integrated Razorpay payment gateway for seamless checkout. Deployed on DigitalOcean with PostgreSQL and Node.js.",
-    link: "https://spotyourdeal.com",
+    // link: "https://spotyourdeal.com",
     tags: ["Node.js", "PostgreSQL", "Razorpay", "DigitalOcean", "REST APIs", "E-commerce"],
     color: "#1D9E75",
     badge: "Production · E-commerce",
