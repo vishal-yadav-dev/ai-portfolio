@@ -93,13 +93,13 @@ export default function ParticleBackground() {
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   // Mobile — pure CSS, fully static, zero hydration risk
   // Uses CSS_PARTICLES with fixed values — never calls Math.random()
   if (!showCanvas) {
+    return (
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <style>{`
           @keyframes fp {
