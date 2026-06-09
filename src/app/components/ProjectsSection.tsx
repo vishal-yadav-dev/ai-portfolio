@@ -3,7 +3,18 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const PROJECTS = [
+interface Project {
+  title: string;
+  subtitle: string;
+  description: string;
+  link?: string;
+  tags: string[];
+  color: string;
+  badge: string;
+  metrics: string[];
+}
+
+const PROJECTS: Project[] = [
   {
     title: "AI Portfolio + RAG Chatbot",
     subtitle: "Personal Project · 2024–Present",
