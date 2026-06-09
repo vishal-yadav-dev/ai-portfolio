@@ -26,6 +26,11 @@ This is not a typical portfolio — it's an **interactive experience** showcasin
 - Speak or type questions
 - AI responds with context-aware answers
 
+### 📄 Resume Management
+- Add resume files with any name to `/public/data` folder
+- All resumes are automatically downloadable from the portfolio
+- Supports PDF and other document formats
+
 ---
 
 ## 🛠️ Tech Stack
