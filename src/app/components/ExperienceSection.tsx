@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import StoryMarker from "./StoryMarker";
 
 interface Experience {
   company: string;
@@ -10,18 +11,23 @@ interface Experience {
   location: string;
   highlight?: boolean;
   color: string;
+  narrative: string;
   bullets: string[];
   tags: string[];
   projects?: string[];
 }
 
+// Most recent first.
 const EXPERIENCES: Experience[] = [
   {
     company: "Innovify · Client: Arm Semiconductors",
     role: "Software Engineer – Backend & GenAI",
     period: "Jan 2025 – Present",
     location: "Remote",
+    highlight: true,
     color: "#7B2FFF",
+    narrative:
+      "Today — building production RAG pipelines and AI-powered decision systems for Arm Semiconductors' enterprise workflows.",
     bullets: [
       "Architected full RAG pipeline for Arm's enterprise knowledge retrieval: document chunking → Pinecone embeddings → LangChain orchestration → Azure OpenAI response generation",
       "Built and deployed production serverless microservices on AWS Lambda, API Gateway, S3, and RDS powering Arm's backend workflows",
@@ -49,6 +55,8 @@ const EXPERIENCES: Experience[] = [
     period: "Apr 2024 – Feb 2025",
     location: "Remote",
     color: "#7B2FFF",
+    narrative:
+      "Before that — leading Lunajoy Health's appointment booking platform end-to-end, under HIPAA compliance.",
     bullets: [
       "Led end-to-end backend of Lunajoy Health's appointment booking platform — improved booking efficiency by 30%",
       "Deployed serverless workflows on AWS Lambda + Amazon RDS + PostgreSQL, cutting data retrieval time by 25%",
@@ -73,6 +81,8 @@ const EXPERIENCES: Experience[] = [
     period: "Oct 2023 – Apr 2024",
     location: "Delhi",
     color: "#FF6B6B",
+    narrative:
+      "Before healthcare — leading a 5-engineer backend team at Mobiloitte, shipping a Web3 NFT marketplace and a real-time social-media sync service.",
     bullets: [
       "Led backend team of 5 engineers — task allocation, architecture decisions, code reviews, and conflict resolution",
       "Built HOVR NFT Marketplace — full backend with Web3 blockchain integration, NFT minting/trading APIs, and Stripe payment processing",
@@ -103,6 +113,8 @@ const EXPERIENCES: Experience[] = [
     period: "Feb 2021 – Aug 2023",
     location: "Noida",
     color: "#FFB347",
+    narrative:
+      "Where it started — three years at Mckinsol Consulting, shipping systems for Under Armour, PVH Corp, and more.",
     bullets: [
       "GXP · Under Armour — built a high-performance article processing system that ingested thousands of purchase order files from an SFTP server, processed them concurrently using Node.js Worker Threads, stored structured data in MongoDB, and served a UI for selecting articles and checking details for printing hang tags — deployed on SAP BTP Cloud",
       "SpotYourDeal — built full backend for an e-commerce platform (spotyourdeal.com) including product catalogue, order management, and Razorpay payment gateway integration",
@@ -140,13 +152,16 @@ export default function ExperienceSection() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
       >
-        <SectionLabel>Experience</SectionLabel>
-        <h2 className="text-4xl md:text-5xl font-black text-white mb-16">
+        <StoryMarker label="Experience" />
+        <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
           5+ years,{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D4FF] to-[#7B2FFF]">
             real production systems.
           </span>
         </h2>
+        <p className="text-gray-500 mb-16 text-lg max-w-2xl">
+          That backend engineer you just met? Here&apos;s how each role built the next.
+        </p>
 
         <div className="relative">
           {/* Timeline line */}
@@ -176,6 +191,10 @@ export default function ExperienceSection() {
                     Current Role
                   </div>
                 )}
+
+                <p className="text-gray-300 text-base italic mb-4 leading-relaxed">
+                  {exp.narrative}
+                </p>
 
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                   <div>
@@ -237,14 +256,5 @@ export default function ExperienceSection() {
         </div>
       </motion.div>
     </section>
-  );
-}
-
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <div className="flex items-center gap-3 mb-4">
-      <div className="w-6 h-px bg-[#00D4FF]" />
-      <span className="text-[#00D4FF] text-sm font-mono uppercase tracking-widest">{children}</span>
-    </div>
   );
 }

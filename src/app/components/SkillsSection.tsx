@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import StoryMarker from "./StoryMarker";
 
 const SKILL_GROUPS = [
   {
@@ -67,13 +68,18 @@ export default function SkillsSection() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
       >
-        <SectionLabel>Skills</SectionLabel>
-        <h2 className="text-4xl md:text-5xl font-black text-white mb-16">
+        <StoryMarker label="How I Work" />
+        <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
           The full{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D4FF] to-[#7B2FFF]">
             technical stack.
           </span>
         </h2>
+        <p className="text-gray-500 mb-16 text-lg max-w-2xl">
+          Every role you just read, every project you just saw — this is what made it possible.
+          I don&apos;t just integrate GenAI, I build it, and every skill below has shipped in a
+          production system, not a tutorial.
+        </p>
 
         <div className="grid md:grid-cols-2 gap-8">
           {SKILL_GROUPS.map((group, gi) => (
@@ -126,14 +132,5 @@ export default function SkillsSection() {
         </div>
       </motion.div>
     </section>
-  );
-}
-
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <div className="flex items-center gap-3 mb-4">
-      <div className="w-6 h-px bg-[#00D4FF]" />
-      <span className="text-[#00D4FF] text-sm font-mono uppercase tracking-widest">{children}</span>
-    </div>
   );
 }

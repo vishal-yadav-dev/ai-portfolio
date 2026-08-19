@@ -1,42 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
-const ROLES = [
-  "Senior Backend Engineer",
-  "GenAI Architect",
-  "Node.JS Expert",
-  "RAG Systems Builder",
-  "Serverless Engineer",
-  "LLM Integrations Lead",
-];
-
-function AnimatedRoles({ roles }: { roles: string[] }) {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % roles.length);
-    }, 2500);
-    return () => clearInterval(timer);
-  }, [roles.length]);
-
-  return (
-    <AnimatePresence mode="wait">
-      <motion.span
-        key={index}
-        initial={{ y: 16, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -16, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="block text-[#00D4FF]"
-      >
-        {">"} {roles[index]}
-      </motion.span>
-    </AnimatePresence>
-  );
-}
+import { motion } from "framer-motion";
 
 export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
   return (
@@ -58,83 +22,52 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00D4FF] rounded-full blur-[180px] opacity-10 pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#7B2FFF] rounded-full blur-[160px] opacity-10 pointer-events-none" />
 
-      <div className="relative z-10 text-center max-w-5xl mx-auto w-full flex flex-col items-center">
+      <div className="relative z-10 max-w-4xl mx-auto w-full pt-8">
         {/* Status badge */}
         <motion.div
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00D4FF]/30 bg-[#00D4FF]/5 text-[#00D4FF] text-sm font-mono mb-6"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00D4FF]/30 bg-[#00D4FF]/5 text-[#00D4FF] text-sm font-mono mb-8 self-start"
         >
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
           Open to Remote/WFO Opportunities · Any Timezone
         </motion.div>
 
-        {/* Name — large, at top, NOT vertically centered */}
+        {/* The hook — one strong line, who I am */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-7xl md:text-9xl font-black tracking-tight text-white leading-none mb-4"
+          className="text-5xl md:text-7xl font-black tracking-tight text-white leading-[1.05] mb-8"
         >
-          Vishal{" "}
+          I'm Vishal Yadav — a{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D4FF] to-[#7B2FFF]">
-            Yadav
-          </span>
+            Senior Backend Engineer
+          </span>{" "}
+          who ships production Node.js, TypeScript &amp; AWS systems, not demos.
         </motion.h1>
-
-        {/* Animated role — NO overflow-hidden, fixed min-height so layout stable */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.35 }}
-          className="text-xl md:text-2xl text-gray-400 font-mono mb-6"
-          style={{ minHeight: "2rem" }}
-        >
-          <AnimatedRoles roles={ROLES} />
-        </motion.div>
 
         {/* One-liner */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55 }}
-          className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed"
+          transition={{ delay: 0.35 }}
+          className="text-gray-400 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed"
         >
           5+ years building{" "}
           <span className="text-white font-medium">production level backend solutions</span>,{" "}
-          <span className="text-white font-medium">serverless architectures</span>,{" "}
-          <span className="text-white font-medium">microservices architectures</span>, and{" "}
+          <span className="text-white font-medium">serverless architectures</span>, and{" "}
           <span className="text-white font-medium">LLM-powered backends</span> — most recently for{" "}
           <span className="text-[#00D4FF] font-semibold">Health and Safety Group UK</span>.
         </motion.p>
-
-        {/* Tech badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65 }}
-          className="flex flex-wrap justify-center gap-2 mb-10"
-        >
-          {[
-            "Node.js", "TypeScript", "AWS Lambda", "RAG",
-            "Pinecone", "LangChain", "OpenAI", "Gemini", "Azure OpenAI",
-          ].map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 rounded-full text-xs font-mono border border-white/10 bg-white/5 text-gray-300 hover:border-[#00D4FF]/50 hover:text-[#00D4FF] transition-all duration-200 cursor-default"
-            >
-              {tech}
-            </span>
-          ))}
-        </motion.div>
 
         {/* CTA buttons */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.78 }}
-          className="flex flex-wrap gap-4 justify-center mb-14"
+          className="flex flex-wrap gap-4 mb-14"
         >
           <button
             onClick={onOpenChat}
@@ -174,7 +107,7 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0 }}
-          className="flex flex-wrap justify-center gap-10 pt-8 border-t border-white/5 w-full"
+          className="flex flex-wrap gap-10 pt-8 border-t border-white/5 w-full"
         >
           {[
             { value: "6+", label: "Years Experience" },
@@ -182,7 +115,7 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
             { value: "Node.js", label: "Production Systems" },
             { value: "AWS", label: "Serverless Expert" },
           ].map((stat) => (
-            <div key={stat.label} className="text-center">
+            <div key={stat.label} className="text-left">
               <div className="text-2xl font-black text-[#00D4FF] font-mono">{stat.value}</div>
               <div className="text-xs text-gray-500 mt-1 uppercase tracking-wider">{stat.label}</div>
             </div>
@@ -190,13 +123,13 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — normal flow, never overlaps content above it */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-600 text-xs"
+        className="relative z-10 mt-auto pt-16 flex flex-col items-center gap-2 text-gray-600 text-xs mx-auto"
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
       >
-        <span className="font-mono text-xs">scroll</span>
+        <span className="font-mono text-xs">the story starts below</span>
         <div className="w-px h-10 bg-gradient-to-b from-gray-600 to-transparent" />
       </motion.div>
     </section>

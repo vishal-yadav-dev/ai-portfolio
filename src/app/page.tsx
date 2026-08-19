@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState, Suspense } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import dynamic from "next/dynamic";
 
 import NavBar from "./components/NavBar";
+import ScrollProgress from "./components/ScrollProgress";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import ExperienceSection from "./components/ExperienceSection";
@@ -45,8 +46,10 @@ export default function Home() {
   }, [chatOpen]);
 
   return (
+    <MotionConfig reducedMotion="user">
     <main ref={containerRef} className="relative min-h-screen" style={{ overflowX: "clip" }} suppressHydrationWarning>
       <ThreeDScene />
+      <ScrollProgress />
       <NavBar activeSection={activeSection} />
       <HeroSection onOpenChat={() => setChatOpen(true)} />
       <AboutSection />
@@ -74,5 +77,6 @@ export default function Home() {
         {chatOpen && <ChatBot onClose={() => setChatOpen(false)} />}
       </AnimatePresence>
     </main>
+    </MotionConfig>
   );
 }

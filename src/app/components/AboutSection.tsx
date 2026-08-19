@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import StoryMarker from "./StoryMarker";
 
 export default function AboutSection() {
   const ref = useRef(null);
@@ -15,13 +16,16 @@ export default function AboutSection() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
       >
-        <SectionLabel>About</SectionLabel>
-        <h2 className="text-4xl md:text-5xl font-black text-white mb-16 leading-tight">
+        <StoryMarker label="About" />
+        <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
           I build the backend that makes <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D4FF] to-[#7B2FFF]">
             AI actually work in production.
           </span>
         </h2>
+        <p className="text-gray-500 text-lg max-w-2xl mb-16">
+          Before the four roles you're about to read — here's who's behind them.
+        </p>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Story */}
@@ -85,14 +89,5 @@ export default function AboutSection() {
         </div>
       </motion.div>
     </section>
-  );
-}
-
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <div className="flex items-center gap-3 mb-4">
-      <div className="w-6 h-px bg-[#00D4FF]" />
-      <span className="text-[#00D4FF] text-sm font-mono uppercase tracking-widest">{children}</span>
-    </div>
   );
 }

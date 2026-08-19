@@ -74,31 +74,47 @@ function CharacterAvatar() {
 
   useFrame((state, delta) => {
     if (!groupRef.current) return;
-    
-    // Responsive coordinates so he doesn't walk completely off the screen on narrow mobile phones!
+
     const isMobile = window.innerWidth < 768;
-    const RightX = isMobile ? 1.2 : 3.5;
-    const LeftX = isMobile ? -1.3 : -3.8;
-    const CenterLeftX = isMobile ? -1.0 : -3.5;
-    
+
+    // On mobile, the avatar stays parked in a corner instead of roaming
+    // across chapters — roaming overlapped body text on narrow screens.
+    if (isMobile) {
+      const parkedX = 1.9;
+      groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, parkedX, delta * 1.5);
+      groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, -3.1, delta * 2);
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, -Math.PI / 6, delta * 4);
+
+      if (animState.current !== "Idle" && actions["Idle"] && actions[animState.current]) {
+        actions[animState.current]?.fadeOut(0.3);
+        actions["Idle"]?.reset().fadeIn(0.3).play();
+        animState.current = "Idle";
+      }
+      return;
+    }
+
+    const RightX = 3.5;
+    const LeftX = -3.8;
+    const CenterLeftX = -3.5;
+
     // --- THE STORY TELLING NARRATIVE ---
     let targetBaseX = RightX;
     let restAnim = "Idle";
     let facingAngle = -Math.PI / 7;
-    
-    // Chapter 1 (0% - 20%): Hero Section 
+
+    // Chapter 1 (0% - 20%): Hero Section
     // He welcomes the user enthusiastically!
     if (scrollProgress < 0.2) {
       targetBaseX = RightX;
       restAnim = "Idle";
-      facingAngle = -Math.PI / 6; 
+      facingAngle = -Math.PI / 6;
     }
     // Chapter 2 (20% - 45%): About & Skills
     // He guides the user's eyes to the left and gives a thumbs up to your stack.
     else if (scrollProgress < 0.45) {
       targetBaseX = LeftX;
       restAnim = "ThumbsUp";
-      facingAngle = Math.PI / 6; 
+      facingAngle = Math.PI / 6;
     }
     // Chapter 3 (45% - 80%): Experience & Projects
     // He energetically dashes back to the right to present your huge enterprise projects!
@@ -111,10 +127,10 @@ function CharacterAvatar() {
     // The story concludes. He goes back to resting smoothly and waiting for them to send a message.
     else {
       targetBaseX = CenterLeftX;
-      restAnim = "Idle"; 
+      restAnim = "Idle";
       facingAngle = Math.PI / 8;
     }
-    
+
     // Smoothly traverse the screen towards the next Chapter's location
     groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, targetBaseX, delta * 1.5);
     
@@ -164,7 +180,7 @@ function CharacterAvatar() {
       */}
       {/* DragControls allows dragging the model ANYWHERE on the screen! */}
       {isMobile ? (
-        <group ref={groupRef} scale={0.45} dispose={null}>
+        <group ref={groupRef} scale={0.22} dispose={null}>
           <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
             <primitive object={scene} />
           </Float>
@@ -198,7 +214,10 @@ export default function ThreeDScene() {
   }, []);
 
   return (
-    <div className="fixed inset-0" style={{ zIndex: 0 }}>
+    <div
+      className="fixed inset-0"
+      style={{ zIndex: 0, pointerEvents: isMobile ? "none" : "auto" }}
+    >
       {/* 
         We add Suspense to avoid Next.js breaking during the GLTF load.
         We also cap dpr interpolation to save memory on heavy mobile displays.
