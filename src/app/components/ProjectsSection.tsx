@@ -2,6 +2,7 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import StoryMarker from "./StoryMarker";
 
 interface Project {
@@ -24,9 +25,9 @@ const PROJECTS: Project[] = [
     subtitle: "Personal Project · 2026",
     story: "The itch: practicing DSA in a sterile code editor felt like a chore, not a craft.",
     description:
-      "An ambient coding-practice site — a developer's desk that shifts with the real time of day, with a live multi-language IDE (JavaScript, Python, Java, C++, Go via the Piston API) for solving DSA and interview problems, and a switchable music playlist. Built with Next.js, TypeScript & Tailwind.",
+      "An ambient coding-practice site — a developer's desk that shifts with the real time of day, with a live multi-language IDE (JavaScript, Python, Java, C++, Go via the Judge0 API) for solving DSA and interview problems, and a switchable music playlist. Built with Next.js, TypeScript & Tailwind.",
     link: "https://codersdesk.vercel.app",
-    tags: ["Next.js", "TypeScript", "Tailwind", "Piston API"],
+    tags: ["Next.js", "TypeScript", "Tailwind", "Judge0 API"],
     color: "#22D3EE",
     badge: "Live · Personal",
     metrics: ["Time-aware ambient UI", "Multi-language code runner", "DSA practice + music"],
@@ -139,9 +140,14 @@ export default function ProjectsSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10px" });
   const [selected, setSelected] = useState<Project | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   const featured = PROJECTS.filter((p) => p.featured);
   const rest = PROJECTS.filter((p) => !p.featured);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!selected) return;
@@ -157,6 +163,7 @@ export default function ProjectsSection() {
   }, [selected]);
 
   return (
+    <>
     <section id="projects" ref={ref} className="relative py-20 px-6 max-w-6xl mx-auto overflow-visible">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -352,94 +359,100 @@ export default function ProjectsSection() {
           ))}
         </div>
       </motion.div>
-
-      {/* Interactive project popup */}
-      <AnimatePresence>
-        {selected && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setSelected(null)}
-            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.97 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl border border-white/10 bg-[#0A0F16] p-8 md:p-10"
-            >
-              <button
-                onClick={() => setSelected(null)}
-                aria-label="Close"
-                className="absolute top-6 right-6 w-9 h-9 flex items-center justify-center rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30 transition-colors"
-              >
-                ✕
-              </button>
-
-              <span
-                className="inline-block text-xs font-mono px-2.5 py-1 rounded-full border mb-4"
-                style={{
-                  color: selected.color,
-                  borderColor: `${selected.color}40`,
-                  background: `${selected.color}10`,
-                }}
-              >
-                {selected.badge}
-              </span>
-
-              <h3 className="text-white font-black text-3xl mb-1 pr-10">{selected.title}</h3>
-              <p className="text-xs text-gray-600 font-mono mb-6">{selected.subtitle}</p>
-
-              {selected.story && (
-                <p className="font-mono text-sm mb-4" style={{ color: selected.color }}>
-                  {selected.story}
-                </p>
-              )}
-
-              <p className="text-gray-400 text-base leading-relaxed mb-6">{selected.description}</p>
-
-              <div className="flex flex-wrap gap-2 mb-5">
-                {selected.metrics.map((m) => (
-                  <span
-                    key={m}
-                    className="text-xs px-2 py-0.5 rounded font-medium"
-                    style={{ color: selected.color, background: `${selected.color}15` }}
-                  >
-                    ✓ {m}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-1.5 pt-5 border-t border-white/5 mb-6">
-                {selected.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2 py-0.5 rounded font-mono border border-white/10 bg-white/5 text-gray-500"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {selected.link && (
-                <a
-                  href={selected.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105"
-                  style={{ background: selected.color, color: "#050A0F" }}
-                >
-                  Visit Live Site ↗
-                </a>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
+
+    {mounted &&
+      createPortal(
+        <AnimatePresence>
+          {selected && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setSelected(null)}
+              className="fixed inset-0 z-[60] overflow-y-auto bg-black/70 backdrop-blur-sm"
+            >
+              <div className="min-h-full flex items-center justify-center p-4 py-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 20, scale: 0.97 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="relative w-full max-w-2xl rounded-3xl border border-white/10 bg-[#0A0F16] p-8 md:p-10"
+                >
+                  <button
+                    onClick={() => setSelected(null)}
+                    aria-label="Close"
+                    className="absolute top-6 right-6 w-9 h-9 flex items-center justify-center rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30 transition-colors"
+                  >
+                    ✕
+                  </button>
+
+                  <span
+                    className="inline-block text-xs font-mono px-2.5 py-1 rounded-full border mb-4"
+                    style={{
+                      color: selected.color,
+                      borderColor: `${selected.color}40`,
+                      background: `${selected.color}10`,
+                    }}
+                  >
+                    {selected.badge}
+                  </span>
+
+                  <h3 className="text-white font-black text-3xl mb-1 pr-10">{selected.title}</h3>
+                  <p className="text-xs text-gray-600 font-mono mb-6">{selected.subtitle}</p>
+
+                  {selected.story && (
+                    <p className="font-mono text-sm mb-4" style={{ color: selected.color }}>
+                      {selected.story}
+                    </p>
+                  )}
+
+                  <p className="text-gray-400 text-base leading-relaxed mb-6">{selected.description}</p>
+
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {selected.metrics.map((m) => (
+                      <span
+                        key={m}
+                        className="text-xs px-2 py-0.5 rounded font-medium"
+                        style={{ color: selected.color, background: `${selected.color}15` }}
+                      >
+                        ✓ {m}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-5 border-t border-white/5 mb-6">
+                    {selected.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs px-2 py-0.5 rounded font-mono border border-white/10 bg-white/5 text-gray-500"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {selected.link && (
+                    <a
+                      href={selected.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105"
+                      style={{ background: selected.color, color: "#050A0F" }}
+                    >
+                      Visit Live Site ↗
+                    </a>
+                  )}
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
   );
 }
